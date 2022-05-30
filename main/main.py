@@ -32,7 +32,7 @@ fmt = logging.Formatter(fmt="%(name)s: %(asctime)s - %(levelname)s: %(message)s"
 sh = logging.StreamHandler()
 sh.setFormatter(fmt)
 sh.setLevel(logging.INFO)
-fh = logging.FileHandler("log\\exchange_log.log", "w", encoding="utf-8")
+fh = logging.FileHandler("log/exchange_log.log", "w", encoding="utf-8")
 fh.setLevel(logging.DEBUG)
 fh.setFormatter(fmt)
 logger.addHandler(sh)
@@ -40,6 +40,7 @@ logger.addHandler(fh)
 
 
 print("""
+0V 01C 002F 0002D版本
 b/B/0代表二进制
 o/O/1代表八进制
 d/D/10代表十进制
@@ -80,9 +81,9 @@ while True:
     if num[0] == '':  # 输入不能为空
         logger.warning("请输入数字")
         continue
-    try:
-        number = int(num[0])
-    except ValueError:
+
+    number = num[0]
+    if bool(re.search("[^0-9a-fA-F]", str(number))):
         logger.warning("请输入一个整数")
         continue
     try:
@@ -123,3 +124,4 @@ while True:
     elif t_to == 3:
         out = hex(out)
     logger.exception(f"从{number}转换成{out}")
+
