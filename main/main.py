@@ -105,7 +105,10 @@ while True:
     try:
         t_to = f(num[2])
     except IndexError:
-        t_to = 0
+        if t != 0:
+            t_to = 0
+        else:
+            t_to = 2
 
     logger.info(f"智能判断为{t} -- {t_to}")
     try:
