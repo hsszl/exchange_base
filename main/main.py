@@ -40,7 +40,7 @@ logger.addHandler(fh)
 
 
 print("""
-0V 01C 002F 0002D版本
+0V 01C 002F 0003D版本
 b/B/0代表二进制
 o/O/1代表八进制
 d/D/10代表十进制
@@ -106,10 +106,10 @@ while True:
     try:
         t_to = f(num[2])
     except IndexError:
-        if t != 0:
-            t_to = 0
-        else:
+        if t != 2:
             t_to = 2
+        else:
+            t_to = 0
 
     logger.info(f"智能判断为{t} -- {t_to}")
     try:
@@ -124,4 +124,3 @@ while True:
     elif t_to == 3:
         out = hex(out)
     logger.exception(f"从{number}转换成{out}")
-
